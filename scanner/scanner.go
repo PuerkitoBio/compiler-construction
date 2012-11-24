@@ -81,6 +81,14 @@ func (this *Scanner) scanInteger() string {
 	return b.String()
 }
 
+func lookupKeyword(lit string) token.Token {
+	t, kw := token.Keywords[lit]
+	if kw {
+		return t
+	}
+	return token.IDENT
+}
+
 func (this *Scanner) scan() token.TokenInfo {
 	var ti token.TokenInfo
 
@@ -93,12 +101,10 @@ func (this *Scanner) scan() token.TokenInfo {
 	// Find token
 	switch {
 	case isLetter(this.ch):
-		ti.T = token.IDENT
-
 		// Scan an identifier, then check if this is a keyword. The output of this case
 		// can be an identifier or a keyword.
 		ti.L = this.scanIdentifier()
-		// TODO : Is keyword?
+		ti.T = lookupKeyword(ti.L)
 
 	case isDigit(this.ch):
 		ti.T = token.INT

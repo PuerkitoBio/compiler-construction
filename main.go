@@ -16,7 +16,7 @@ func main() {
 		panic(e)
 	}
 	s := scanner.NewScanner(f)
-	for t := s.GetToken(); t.T != token.EOF && t.T != token.ILLEGAL; t = s.GetToken() {
+	for t := s.GetToken(); t.T != token.EOF; t = s.GetToken() {
 		fmt.Printf("%+v\n", t)
 	}
 }
