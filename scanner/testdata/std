@@ -1,7 +1,10 @@
 var Toto1.
 var v2.
 
+  // TotO1 is assigned
   Toto1 = 4 + 2.
+
+  // Then toto 2 again
 Toto1 = Toto1 * 3.
-v2 = Toto1 - 7 * 3 /12.
+v2 = Toto1 - 7 * 3 /12. // end of line comment
 Toto1=v2*12305-4565.

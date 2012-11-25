@@ -17,6 +17,6 @@ func main() {
 	}
 	s := scanner.NewScanner(f)
 	for t := s.GetToken(); t.T != token.EOF; t = s.GetToken() {
-		fmt.Printf("%+v\n", t)
+		fmt.Printf("%s (%d): %s \t %+v\n", token.Tokens[t.T], t.T, t.L, t)
 	}
 }

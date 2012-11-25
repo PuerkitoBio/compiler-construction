@@ -6,7 +6,7 @@ type Token int
 //
 // var ident.
 // ident = 3 + 8.
-// ident = ident - 2.
+// ident = ident - 2. // Comment up to end-of-line
 // ident = ident * 9 / 3.
 //
 // Optional parenthesis, forced cast to integer, just integer and variables.

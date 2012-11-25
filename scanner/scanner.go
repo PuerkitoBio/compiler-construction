@@ -81,6 +81,16 @@ func (this *Scanner) scanInteger() string {
 	return b.String()
 }
 
+func (this *Scanner) consumeRestOfLine() string {
+	var b bytes.Buffer
+
+	for this.ch != '\n' && !this.eof {
+		b.WriteRune(this.ch)
+		this.read()
+	}
+	return b.String()
+}
+
 func lookupKeyword(lit string) token.Token {
 	t, kw := token.Keywords[lit]
 	if kw {
@@ -132,7 +142,14 @@ func (this *Scanner) scan() token.TokenInfo {
 			case '*':
 				ti.T = token.MUL
 			case '/':
-				ti.T = token.DIV
+				if this.ch == '/' {
+					ti.T = token.COMMENT
+					// Get ready for next char
+					this.read()
+					ti.L = this.consumeRestOfLine()
+				} else {
+					ti.T = token.DIV
+				}
 			case '=':
 				ti.T = token.ASSIGN
 			}
