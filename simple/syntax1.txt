@@ -1,0 +1,7 @@
+fn funcName(x int, y int): int {
+  ret x + y
+}
+
+var a int
+a = funcName(3, 5)
+print(a)
